@@ -61,8 +61,6 @@ class Scatter(Graph):
                               label="n = {}".format(sample_sze))
         self.add_charting_labels()
 
-
-
     def display(self):
         plt.show()
 
@@ -90,5 +88,6 @@ class Histogram(Graph):
         plt.ylabel('Density')
         plt.title("Density Plot for Exponential Random Variables")
         plt.legend()
+
     def display(self):
         plt.show()
