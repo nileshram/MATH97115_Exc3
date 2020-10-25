@@ -21,12 +21,13 @@ def _configure_env():
     sys.path.append(root_dir)
 
 def _configure_cmdline():
-    parser = ArgumentParser()
     cmd_conf = ConfigurationFactory.create_config("app_config.json")["cmd_line_args"]
+    parser = ArgumentParser(description=cmd_conf["desc"])
     for cmd in cmd_conf["args"]:
         parser.add_argument(cmd_conf["args"][cmd]["name"],
                             help=cmd_conf["args"][cmd]["help"],
                             type=locate(cmd_conf["args"][cmd]["type"]))
+    args = parser.parse_args()
 
 if __name__ == "__main__":
     _configure_log()

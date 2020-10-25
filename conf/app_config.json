@@ -32,7 +32,7 @@
     }
   },
   "cmd_line_args": {
-    "description": "MATH97115 Application for Exc 3",
+    "desc": "MATH97115 Application for Exc 3",
     "args": {
       "sim": {
         "name": "--sim",
