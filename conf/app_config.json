@@ -34,8 +34,11 @@
   "cmd_line_args": {
     "description": "MATH97115 Application for Exc 3",
     "args": {
-      "name": "--sim",
-      "help": "simulator help"
+      "sim": {
+        "name": "--sim",
+        "help": "number of simulations to perform",
+        "type" : "int"
+      }
     }
   },
   "exp_cdf": {

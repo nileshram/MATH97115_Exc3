@@ -1,6 +1,8 @@
 # Created by nilesh at 24/10/2020
+from pydoc import locate
 import sys
 from os.path import dirname
+from argparse import ArgumentParser
 from configuration import ConfigurationFactory
 import logging.config
 from app.application import Application
@@ -18,9 +20,18 @@ def _configure_env():
     root_dir = dirname(__file__)
     sys.path.append(root_dir)
 
+def _configure_cmdline():
+    parser = ArgumentParser()
+    cmd_conf = ConfigurationFactory.create_config("app_config.json")["cmd_line_args"]
+    for cmd in cmd_conf["args"]:
+        parser.add_argument(cmd_conf["args"][cmd]["name"],
+                            help=cmd_conf["args"][cmd]["help"],
+                            type=locate(cmd_conf["args"][cmd]["type"]))
+
 if __name__ == "__main__":
     _configure_log()
     _configure_env()
+    _configure_cmdline()
     try:
         app = Application()
         app.start()
