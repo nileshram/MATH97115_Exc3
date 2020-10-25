@@ -1,0 +1,44 @@
+{
+  "app_info": {
+    "author": "Nilesh Ramnarain",
+    "version": "v.1.0"
+  },
+  "log": {
+    "version": 1,
+    "disable_existing_loggers": true,
+    "formatters": {
+      "stats_formatter": {
+        "format": "%(asctime)s - %(levelname)s : %(message)s",
+        "datefmt": "%Y%m%d %H:%M:%S"
+      }
+    },
+    "handlers": {
+      "consolehandler": {
+        "class": "logging.StreamHandler",
+        "level": "DEBUG",
+        "formatter": "stats_formatter",
+        "stream": "ext://sys.stdout"
+      }
+    },
+    "loggers": {
+      "stats_log": {
+        "level": "DEBUG",
+        "handlers": [
+          "consolehandler"
+        ],
+        "qualname": "MATH97236",
+        "propagate": "no"
+      }
+    }
+  },
+  "cmd_line_args": {},
+  "exp_cdf": {
+    "lambda": 1,
+    "random_samples": [
+      10,
+      50,
+      100,
+      1000
+    ]
+  }
+}
