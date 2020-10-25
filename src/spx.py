@@ -1,4 +1,6 @@
 # Created by nilesh at 24/10/2020
+import sys
+from os.path import dirname
 from configuration import ConfigurationFactory
 import logging.config
 from app.application import Application
@@ -11,8 +13,14 @@ def _configure_log():
     else:
         logging.basicConfig(level=logging.DEBUG)
 
+#add src to PYTHONPATH
+def _configure_env():
+    root_dir = dirname(__file__)
+    sys.path.append(root_dir)
+
 if __name__ == "__main__":
     _configure_log()
+    _configure_env()
     try:
         app = Application()
         app.start()
