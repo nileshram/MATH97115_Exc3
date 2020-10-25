@@ -10,7 +10,6 @@ def _configure_log():
         logging.config.dictConfig(log_config)
     else:
         logging.basicConfig(level=logging.DEBUG)
-        print("sup")
 
 if __name__ == "__main__":
     _configure_log()
