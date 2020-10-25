@@ -1,8 +1,8 @@
 # Created by nilesh at 25/10/2020
 
 import matplotlib.pyplot as plt
-from matplotlib.figure import Figure
 import logging
+import numpy as np
 
 class Graph:
 
@@ -43,11 +43,25 @@ class Scatter(Graph):
         self.plot_scatter(data)
         self.display()
 
+    def add_charting_labels(self):
+        plt.xlabel('x - (Exponential R.V.)')
+        plt.ylabel('Probability')
+        plt.title("ECDF Plot for Exponential Random Samples")
+        plt.legend()
+
     def plot_scatter(self, data):
         self._logger.info("Plotting scatter graph of ecdf for all samples")
         for sample_sze in data.ecdf:
             #plot the scatter graph
-            self.axes.scatter(data.ecdf[sample_sze]["x"], data.ecdf[sample_sze]["y"])
+            self.axes.scatter(data.ecdf[sample_sze]["x"],
+                              data.ecdf[sample_sze]["y"],
+                              s=10,
+                              edgecolors='black',
+                              alpha=0.5,
+                              label="n = {}".format(sample_sze))
+        self.add_charting_labels()
+
+
 
     def display(self):
         plt.show()
@@ -64,7 +78,17 @@ class Histogram(Graph):
         self._logger.info("Plotting histogram for all sample sizes")
         for sample_sze in data.exp_sample:
             #plot the scatter graph
-            self.axes.hist(data.exp_sample[sample_sze], bins=100, edgecolor="black")
+            self.axes.hist(np.sort(data.exp_sample[sample_sze]),
+                           bins=100,
+                           edgecolor="black",
+                           alpha=0.5,
+                           label="n = {}".format(sample_sze))
+        self.add_charting_labels()
 
+    def add_charting_labels(self):
+        plt.xlabel('x - Exponential R.V.')
+        plt.ylabel('Density')
+        plt.title("Density Plot for Exponential Random Variables")
+        plt.legend()
     def display(self):
         plt.show()
