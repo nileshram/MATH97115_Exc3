@@ -13,5 +13,8 @@ def _configure_log():
 
 if __name__ == "__main__":
     _configure_log()
-    app = Application()
-    app.start()
+    try:
+        app = Application()
+        app.start()
+    except Exception as e:
+        print(e)
